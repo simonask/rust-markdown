@@ -1,0 +1,7 @@
+[package]
+
+name = "rust-markdown"
+version = "0.0.1"
+authors = ["Simon Ask Ulsnes <simon@ulsnes.dk>"]
+
+build = "build.rs"
