@@ -52,3 +52,12 @@ impl<'_> Document<'_> {
     buffer
   }
 }
+
+#[unsafe_destructor]
+impl<'_> Drop for Document<'_> {
+  fn drop(&mut self) {
+    unsafe {
+      hoedown_document_free(self.doc)
+    }
+  }
+}
