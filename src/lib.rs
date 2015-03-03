@@ -4,7 +4,7 @@
 extern crate libc;
 use libc::{c_int};
 
-pub mod buffer;
+mod buffer;
 mod bridge;
 mod document;
 mod html;
