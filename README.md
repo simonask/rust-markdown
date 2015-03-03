@@ -1,6 +1,6 @@
 # rust-markdown
 
-Markdown rendering for Rust, using Hoedown.
+Markdown rendering for Rust, using [Hoedown](https://github.com/hoedown/hoedown).
 
 This is basically a 1-to-1 mapping of the Hoedown API, with added Rust semantics.
 
