@@ -1,6 +1,7 @@
 use bridge::*;
 use buffer::Buffer;
 use std::mem::transmute;
+use std::marker;
 
 pub trait Renderer {
   unsafe fn hoedown_renderer(&self) -> *const HoedownRenderer;
@@ -8,7 +9,10 @@ pub trait Renderer {
 
 pub struct Document<'r> {
   doc: *mut HoedownDocument,
-  _renderer: &'r Renderer // TODO: Remove this when the lifetime can be propagated without a member.
+
+  // HoedownDocument internally contains a reference to
+  // Renderer. Let the borrow checker know.
+  _marker: marker::PhantomData<&'r ()>
 }
 
 impl<'_> Document<'_> {
@@ -20,7 +24,7 @@ impl<'_> Document<'_> {
     unsafe {
       let r = renderer.hoedown_renderer();
       let doc = hoedown_document_new(r, extensions.bits(), 32);
-      Document { doc: doc, _renderer: renderer }
+      Document { doc: doc, _marker: marker::PhantomData }
     }
   }
 
