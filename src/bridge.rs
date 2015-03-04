@@ -116,6 +116,7 @@ pub struct HoedownRenderer {
   pub doc_footer: fn(ob: *mut HoedownBuffer, inline_render: c_int, data: *const HoedownRendererData) -> c_void,
 }
 
+#[link(name = "hoedown", kind = "static")]
 extern {
   // autolink.h
   pub fn hoedown_autolink_is_safe(data: *const u8, size: size_t) -> c_int;

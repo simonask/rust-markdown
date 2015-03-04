@@ -1,8 +1,10 @@
-#![feature(io, env)]
+#![feature(process)]
 
-use std::old_io::Command;
+use std::process::Command;
 
 fn main() {
-  Command::new("make").status().unwrap();
-  println!("cargo:rustc-flags=-L hoedown -l hoedown");
+  Command::new("make")
+    .args(&["libhoedown.a", "-C", "hoedown"])
+    .status().unwrap();
+  println!("cargo:rustc-flags=-L native=hoedown");
 }
